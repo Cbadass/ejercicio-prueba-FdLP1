@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+
+
+  int *infectadosAnterior1;
+  int *infectadosAnterior2;
+  int *infectadosaAlDiaX;
+  int *diaX;
+  int *contador;
+
+  infectadosAnterior1 = malloc(sizeof(int));
+  infectadosAnterior2 = malloc(sizeof(int));
+  infectadosaAlDiaX = malloc(sizeof(int));
+  diaX = malloc(sizeof(int));
+  contador = malloc(sizeof(int));
+
+  *infectadosAnterior1 = 1;
+  *infectadosAnterior2 = 1;
+  *infectadosaAlDiaX = 0;
+  *contador = 2;
+
+  printf("ingrese n° dia para saber n° infectados: ");
+  scanf("%i", &*diaX);
+
+  printf("infectados dia 1: %i \n", *infectadosAnterior1);
+  printf("infectados dia 2: %i \n", *infectadosAnterior2);
+
+  *infectadosaAlDiaX = *infectadosAnterior1 + *infectadosAnterior2;
+
+  for(*contador = 3 ; *contador <= *diaX ; ++*contador) {
+    
+    printf("infectados dia %i: %i \n",*contador, *infectadosaAlDiaX);
+
+    *infectadosAnterior1 = *infectadosAnterior2;
+    *infectadosAnterior2 = *infectadosaAlDiaX;
+    *infectadosaAlDiaX = *infectadosAnterior1 + *infectadosAnterior2;
+
+  }
+
+  free(infectadosAnterior1);
+  free(infectadosAnterior2);
+  free(infectadosaAlDiaX);
+  free(diaX);
+  free(contador);
+
+  return 0;
+}
